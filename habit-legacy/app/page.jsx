@@ -1,5 +1,9 @@
 async function getUsers() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/users`, {
+  // Use a fallback if the environment variable is undefined
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+  console.log('Using base URL:', baseUrl); // Debug output
+  
+  const res = await fetch(`${baseUrl}/api/users`, {
     cache: 'no-store', // Disable caching to always get fresh data
   });
   return res.json();
@@ -14,11 +18,6 @@ export default async function HomePage() {
     <div>
       <h1>Users</h1>
       <ul>
-        {users.map((user) => (
-          <li key={user.email}>
-            {user.email} - Level {user.level}
-          </li>
-        ))}
       </ul>
     </div>
   );

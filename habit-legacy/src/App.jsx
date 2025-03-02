@@ -18,6 +18,7 @@ function App() {
           reward="50xp"
           streak={7}
         />
+        # added two new tasks
           <HabitCard 
           title="Daily Task: BookWorm"
           description="Read at least 10 pages of a book"

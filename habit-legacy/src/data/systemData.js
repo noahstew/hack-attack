@@ -75,6 +75,31 @@ export const initialUsers = {
   },
 };
 
+export const habits = [
+  {
+    title: 'Daily Task: Get Hydrated',
+    description:
+      'Drink at least 8 glasses of water each day for optimal health.',
+    reward: '50xp',
+    xpAmount: 50,
+    streak: 7,
+  },
+  {
+    title: 'Daily Task: BookWorm',
+    description: 'Read at least 10 pages of a book',
+    reward: '50xp',
+    xpAmount: 50,
+    streak: 3,
+  },
+  {
+    title: 'Weekly Task: Clean House',
+    description: 'Clean: Room, Bathroom, Laundry, Kitchen, Floor, etc.',
+    reward: '150xp',
+    xpAmount: 150,
+    streak: 12,
+  },
+];
+
 // Simulated delay for async operations (ms)
 const DELAY = 300;
 

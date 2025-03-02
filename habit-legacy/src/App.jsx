@@ -37,6 +37,14 @@ function App() {
       xpAmount: 150,
       streak: 12,
     },
+    {
+      id: 4,
+      title: 'Weekly Task: Touch Grass',
+      description: 'Go outside and get some fresh air for 15 minutes.',
+      reward: '100xp',
+      xpAmount: 100,
+      streak: 5,
+    },
   ]);
 
   // Handle adding a new habit

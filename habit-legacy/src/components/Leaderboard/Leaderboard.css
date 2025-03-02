@@ -1,0 +1,123 @@
+.leaderboard-container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.leaderboard-list {
+  margin-top: 1.5rem;
+}
+
+.leaderboard-item {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 0.75rem;
+  background: var(--color-secondary);
+  border-radius: var(--border-radius);
+  transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+  position: relative;
+  overflow: hidden;
+}
+
+.leaderboard-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.leaderboard-rank {
+  font-size: 1.5rem;
+  font-weight: bold;
+  width: 40px;
+  text-align: center;
+}
+
+.leaderboard-profile {
+  margin: 0 1rem;
+}
+
+.leaderboard-avatar {
+  width: 50px;
+  border-radius: 50%;
+  border: 2px solid var(--color-accent);
+  object-fit: cover;
+}
+
+.leaderboard-info {
+  flex-grow: 1;
+}
+
+.leaderboard-name {
+  margin-bottom: 0.25rem;
+  font-size: 1.2rem;
+}
+
+.leaderboard-level {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.leaderboard-level .level-indicator {
+  width: 35px;
+  height: 35px;
+  font-size: 0.9rem;
+}
+
+.leaderboard-score {
+  font-weight: bold;
+  color: var(--color-text);
+  font-size: 1.2rem;
+}
+
+/* Special styling for top ranks */
+.rank-first {
+  background: linear-gradient(to right, var(--color-secondary), rgba(255, 223, 0, 0.15));
+  border-left: 3px solid gold;
+}
+
+.rank-first .leaderboard-rank {
+  color: gold;
+}
+
+.rank-second {
+  background: linear-gradient(to right, var(--color-secondary), rgba(192, 192, 192, 0.15));
+  border-left: 3px solid silver;
+}
+
+.rank-second .leaderboard-rank {
+  color: silver;
+}
+
+.rank-third {
+  background: linear-gradient(to right, var(--color-secondary), rgba(205, 127, 50, 0.15));
+  border-left: 3px solid #cd7f32;
+}
+
+.rank-third .leaderboard-rank {
+  color: #cd7f32;
+}
+
+/* Add glow effect to first place */
+.rank-first .leaderboard-avatar {
+  border-color: gold;
+  box-shadow: 0 0 10px rgba(255, 223, 0, 0.5);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .leaderboard-item {
+    flex-wrap: wrap;
+  }
+  
+  .leaderboard-info {
+    width: 100%;
+    margin-top: 0.5rem;
+    order: 3;
+  }
+  
+  .leaderboard-score {
+    width: 100%;
+    text-align: right;
+    order: 4;
+  }
+}

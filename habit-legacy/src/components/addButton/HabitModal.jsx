@@ -29,8 +29,8 @@ const HabitModal = ({ isOpen, onClose, onAddHabit }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black opacity-50">
-      <div className="bg-[#17153b] border border-[#433d8b] rounded-lg p-6 w-full max-w-md shadow-xl op">
+    <div className="fixed inset-0 flex items-center justify-center z-50 bg-black opacity-100">
+      <div className="bg-[#17153b] border border-[#433d8b] rounded-lg p-6 w-full max-w-md shadow-xl ">
         <h2 className="text-2xl font-bold mb-4 text-[#c8acd6]">
           Add New Habit
         </h2>

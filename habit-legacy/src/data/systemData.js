@@ -29,7 +29,7 @@ export const initialUsers = {
   },
 
   user3: {
-    name: 'Ben D',
+    name: 'Jay T',
     profilePic: 'icon/Behemoth.jpg',
     currentXp: 1527,
     level: 6,

@@ -12,6 +12,10 @@
   display: flex;
   gap: 1rem;
   height: calc(100vh - 120px);
+  background-position-x:right;
+  background-image:url("../public/backgrounds/Background1.jpg") ;
+  background-repeat:no-repeat;
+  background-size:contain;
 }
 
 .layout-sidebar {
@@ -25,15 +29,15 @@
 
 .layout-main {
   flex: 3;
-  background-color: var(--color-secondary);
+  background-color:transparent;
   border-radius: var(--border-radius);
   padding: 1rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   overflow-y: auto;
   height: 75%;
-  background-image:url("../public/backgrounds/Background1.jpg") ;
+  /* background-image:url("../public/backgrounds/Background1.jpg") ;
   background-repeat:no-repeat;
-  background-size:contain;
+  background-size:contain; */
 }
 
 /* Responsive adjustments */

@@ -38,12 +38,16 @@ function App() {
               streak={12} 
             />
             <Player />
-            <AddHabit/>
+            <AddHabit/> 
+            <audio autoPlay>
+              <source src="moosik.mp3" type="audio/mpeg"/>
+            </audio>
           </div>
         }
       />
     </UserProvider>
   );
 }
+
 
 export default App;

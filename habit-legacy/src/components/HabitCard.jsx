@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Confetti from './Confetti';
 import { useUser } from '../context/UserContext';
+import getGeminiSuggestion from '../services/geminiService';
 
 const HabitCard = ({ 
   title, 
@@ -9,7 +10,8 @@ const HabitCard = ({
   xpAmount = 0,  // Add xpAmount prop
   streak = 0,
   onSave = () => {},
-  onStreakIncrement = () => {}
+  onStreakIncrement = () => {},
+  onSuggestionReceived = () => {} // New prop for handling suggestions
 }) => {
   const { increaseExp } = useUser();  // Get increaseExp from context
   const [isEditing, setIsEditing] = useState(false);
@@ -45,7 +47,7 @@ const HabitCard = ({
     });
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     // Update the displayed content
     setCurrentTitle(editData.title);
     setCurrentDescription(editData.description);
@@ -58,6 +60,14 @@ const HabitCard = ({
     });
     
     setIsEditing(false);
+    
+    // Get suggestion from Gemini API
+    try {
+      const suggestion = await getGeminiSuggestion(editData.title, editData.description);
+      onSuggestionReceived(suggestion);
+    } catch (error) {
+      console.error('Error getting suggestion:', error);
+    }
   };
 
   const handleChange = (e) => {

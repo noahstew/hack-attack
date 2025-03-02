@@ -47,6 +47,10 @@ function App() {
     },
   ]);
 
+  // State for AI suggestions
+  const [aiSuggestion, setAiSuggestion] = useState(null);
+  const [showPlayer, setShowPlayer] = useState(true);
+
   // Handle adding a new habit
   const handleAddHabit = (newHabit) => {
     setHabits([...habits, newHabit]);
@@ -70,6 +74,18 @@ function App() {
     );
   };
 
+  // Handle AI suggestion for habit improvement
+  const handleSuggestionReceived = (suggestion) => {
+    setAiSuggestion(suggestion);
+    setShowPlayer(true);
+  };
+
+  // Handle player click - now it doesn't dismiss the suggestion completely
+  const handleDismissPlayer = () => {
+    // Clear the AI suggestion when dismissed
+    setAiSuggestion(null);
+  };
+
   return (
     <UserProvider>
       <Layout
@@ -85,15 +101,12 @@ function App() {
                 reward={habit.reward}
                 xpAmount={habit.xpAmount}
                 streak={habit.streak}
-                onStreakIncrement={(newStreak) =>
-                  handleStreakIncrement(habit.id, newStreak)
-                }
-                onSave={(updatedData) =>
-                  handleUpdateHabit(habit.id, updatedData)
-                }
+                onStreakIncrement={(newStreak) => handleStreakIncrement(habit.id, newStreak)}
+                onSave={(updatedData) => handleUpdateHabit(habit.id, updatedData)}
+                onSuggestionReceived={handleSuggestionReceived}
               />
             ))}
-            <Player />
+            {showPlayer && <Player aiSuggestion={aiSuggestion} onDismiss={handleDismissPlayer} />}
             <AddHabit onAddHabit={handleAddHabit} />
           </div>
         }

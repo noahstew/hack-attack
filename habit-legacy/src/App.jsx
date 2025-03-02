@@ -1,16 +1,17 @@
 import './App.css';
 import './global.css';
-import { Layout } from './components';
+import { Layout, Leaderboard } from './components';
 import HabitCard from './components/HabitCard';
 import NavBar from './components/NavBar';
-import Leaderboard from './components/Leaderboard';
+import { users } from './data/systemData';
+
 function App() {
   return (
     <Layout
       navbar={<div><NavBar/></div>}
       sidebar={
         <div>
-        <Leaderboard/>
+          <Leaderboard users={users} />
         </div>
       }
       main={

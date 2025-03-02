@@ -16,64 +16,89 @@ export const initialUsers = {
   user1: {
     name: 'Min',
     profilePic: 'icon/chicken.png',
-    currentXp: 500,
-    level: 2,
+    currentXp: 532,
+    level: 3,
     streak: 2,
   },
   user2: {
     name: 'Jane',
     profilePic: 'icon/eagle.jpeg',
-    currentXp: 990,
-    level: 32,
+    currentXp: 812,
+    level: 4,
     streak: 12,
   },
 
   user3: {
-    name: 'Ben D',
+    name: 'Jay T',
     profilePic: 'icon/Behemoth.jpg',
-    currentXp: 1100,
-    level: 40,
+    currentXp: 1527,
+    level: 6,
     streak: 12,
   },
 
   user4: {
-    name: 'Mac B',
+    name: 'Beck',
     profilePic: 'icon/Toire.jpeg',
-    currentXp: 1600,
-    level: 55,
+    currentXp: 2439,
+    level: 8,
     streak: 30,
   },
 
   user5: {
-    name: 'Jack',
+    name: 'Mac B',
     profilePic: 'icon/robot.jpeg',
-    currentXp: 2000,
-    level: 60,
+    currentXp: 4072,
+    level: 11,
     streak: 30,
   },
 
   user6: {
-    name: 'Jill',
+    name: 'Tuah',
     profilePic: 'icon/shark.jpeg',
-    currentXp: 5000,
-    level: 100,
+    currentXp: 5768,
+    level: 13,
     streak: 50,
   },
   user7: {
-    name: 'Beck',
+    name: 'Hack',
     profilePic: 'icon/sword&shield.jpeg',
-    currentXp: 5000,
-    level: 100,
+    currentXp: 6789,
+    level: 14,
     streak: 50,
   },
   user8: {
-    name: 'Buck',
+    name: 'Lamia',
     profilePic: 'icon/wolf.jpeg',
-    currentXp: 5000,
-    level: 100,
+    currentXp: 10234,
+    level: 17,
     streak: 50,
   },
 };
+
+export const habits = [
+  {
+    title: 'Daily Task: Get Hydrated',
+    description:
+      'Drink at least 8 glasses of water each day for optimal health.',
+    reward: '50xp',
+    xpAmount: 50,
+    streak: 7,
+  },
+  {
+    title: 'Daily Task: BookWorm',
+    description: 'Read at least 10 pages of a book',
+    reward: '50xp',
+    xpAmount: 50,
+    streak: 3,
+  },
+  {
+    title: 'Weekly Task: Clean House',
+    description: 'Clean: Room, Bathroom, Laundry, Kitchen, Floor, etc.',
+    reward: '150xp',
+    xpAmount: 150,
+    streak: 12,
+  },
+];
 
 // Simulated delay for async operations (ms)
 const DELAY = 300;

@@ -1,5 +1,5 @@
-import ProfilePhoto from './ProfilePhoto';
-import ProgressBar from './ProgressBar';
+import ProfilePhoto from "./ProfilePhoto";
+import ProgressBar from "./ProgressBar";
 function NavBar() {
   return (
     <div className="flex flex-row justify-between items-center p-4">

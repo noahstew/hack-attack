@@ -1,28 +1,9 @@
-import { useState } from 'react';
+import { useUser } from '../context/UserContext';
 import ProfilePhoto from './ProfilePhoto';
 import ProgressBar from './ProgressBar';
+
 function NavBar() {
-  const [userExp, setUserExp] = useState(0); // User's current experience
-  const [userLvl, setUserLvl] = useState(1); // User's level
-  const [userExpGoal, setUserExpGoal] = useState(200); // Exp goal for next level
-
-  function increaseExp(exp) {
-    let newExp = userExp + exp; // Add experience
-    let newLvl = userLvl; // Start from current level
-    let newGoal = userExpGoal; // Start from current goal
-
-    // Level up if experience exceeds the goal
-    while (newExp >= newGoal) {
-      newExp -= newGoal; // Subtract the goal from the experience
-      newLvl++; // Increase the level
-      newGoal += 50; // Increase the goal by 50
-    }
-
-    // Update state
-    setUserExp(newExp);
-    setUserLvl(newLvl);
-    setUserExpGoal(newGoal);
-  }
+  const { userExp, userLvl, userExpGoal, increaseExp } = useUser();
 
   return (
     <div className="flex flex-row justify-between items-center p-4">
@@ -45,13 +26,6 @@ function NavBar() {
       <div className="flex flex-row items-center gap-2">
         <ProfilePhoto imgSrc="icon/Behemoth.jpg" alt="profilepic" width={40} />{' '}
         <p>Ben Dover</p>
-        <button
-          onClick={() => {
-            increaseExp(75);
-          }}
-        >
-          click me
-        </button>
       </div>
     </div>
   );

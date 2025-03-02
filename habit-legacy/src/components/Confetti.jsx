@@ -1,89 +1,125 @@
-import React, { useState, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 
 const Confetti = ({ active, duration = 2000 }) => {
-  const [particles, setParticles] = useState([]);
+  const containerRef = useRef(null);
+  const animationRef = useRef(null);
+  const particlesRef = useRef([]);
   
   useEffect(() => {
     if (!active) return;
     
-    // Clear existing particles
-    setParticles([]);
+    // Clear the container
+    if (containerRef.current) {
+      containerRef.current.innerHTML = '';
+    }
     
-    // Create new particles
-    const newParticles = [];
+    // Stop any existing animation
+    if (animationRef.current) {
+      cancelAnimationFrame(animationRef.current);
+    }
+    
+    // Create particles
     const colors = ['#ff718d', '#fdbb2d', '#22c1c3', '#83e584', '#ff5e7e', '#45aaf2'];
+    particlesRef.current = [];
     
-    for (let i = 0; i < 150; i++) {
-      newParticles.push({
-        id: i,
-        x: Math.random() * 100,  // % of parent width
-        y: -10 - Math.random() * 20,  // Start above the container
-        color: colors[Math.floor(Math.random() * colors.length)],
-        size: 3 + Math.random() * 7,
-        speed: 3 + Math.random() * 1,
-        rotation: Math.random() * 360,
-        rotationSpeed: -1 + Math.random() * 2,
+    for (let i = 0; i < 100; i++) {
+      const particle = document.createElement('div');
+      
+      // Initial position and properties
+      const x = Math.random() * 100; // % of container width
+      const y = -10 - Math.random() * 20; // Start above the container
+      const size = 3 + Math.random() * 7;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      const speed = 2 + Math.random() * 2; // More consistent speed
+      const rotation = Math.random() * 360;
+      const rotationSpeed = -1 + Math.random() * 2;
+      const shape = Math.random() > 0.5 ? 'circle' : 'square';
+      
+      // Set styles
+      particle.style.position = 'absolute';
+      particle.style.left = `${x}%`;
+      particle.style.top = `${y}%`;
+      particle.style.width = `${size}px`;
+      particle.style.height = `${size}px`;
+      particle.style.backgroundColor = color;
+      particle.style.borderRadius = shape === 'circle' ? '50%' : '0';
+      particle.style.transform = `rotate(${rotation}deg)`;
+      
+      // Add to container and store reference with metadata
+      containerRef.current.appendChild(particle);
+      particlesRef.current.push({
+        element: particle,
+        x,
+        y,
+        speed,
+        rotation,
+        rotationSpeed
       });
     }
     
-    setParticles(newParticles);
+    // Start time for consistent animation speed
+    const startTime = Date.now();
     
-    // Cleanup after duration
-    const timer = setTimeout(() => {
-      setParticles([]);
-    }, duration);
-    
-    return () => clearTimeout(timer);
-  }, [active, duration]);
-  
-  // Animation frame for falling confetti
-  useEffect(() => {
-    if (particles.length === 0) return;
-    
-    const animateParticles = () => {
-      setParticles(prevParticles => 
-        prevParticles.map(p => ({
-          ...p,
-          y: p.y + p.speed,
-          rotation: p.rotation + p.rotationSpeed
-        })).filter(p => p.y < 110) // Remove particles that fall out of view
-      );
+    // Animation function
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      
+      // If duration exceeded, clean up
+      if (elapsed > duration) {
+        if (containerRef.current) {
+          containerRef.current.innerHTML = '';
+        }
+        return;
+      }
+      
+      // Update each particle position
+      for (let i = 0; i < particlesRef.current.length; i++) {
+        const p = particlesRef.current[i];
+        
+        // Skip particles that are no longer visible
+        if (p.y > 110) continue;
+        
+        // Update position and rotation
+        p.y += p.speed;
+        p.rotation += p.rotationSpeed;
+        
+        // Apply changes to DOM element
+        p.element.style.top = `${p.y}%`;
+        p.element.style.transform = `rotate(${p.rotation}deg)`;
+      }
+      
+      // Continue animation
+      animationRef.current = requestAnimationFrame(animate);
     };
     
-    const animationId = requestAnimationFrame(animateParticles);
-    return () => cancelAnimationFrame(animationId);
-  }, [particles]);
-  
-  if (particles.length === 0) return null;
+    // Start animation
+    animationRef.current = requestAnimationFrame(animate);
+    
+    // Cleanup function
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+      if (containerRef.current) {
+        containerRef.current.innerHTML = '';
+      }
+    };
+  }, [active, duration]);
   
   return (
-    <div style={{
-      position: 'absolute', 
-      top: 0,
-      left: 0,
-      width: '100%',
-      height: '100%',
-      pointerEvents: 'none',
-      zIndex: 10,
-      overflow: 'hidden'
-    }}>
-      {particles.map(p => (
-        <div
-          key={p.id}
-          style={{
-            position: 'absolute',
-            top: `${p.y}%`,
-            left: `${p.x}%`,
-            width: `${p.size}px`,
-            height: `${p.size}px`,
-            backgroundColor: p.color,
-            transform: `rotate(${p.rotation}deg)`,
-            transition: 'transform 0.1s linear',
-            borderRadius: Math.random() > 0.5 ? '50%' : '0',
-          }}
-        />
-      ))}
-    </div>
+    <div 
+      ref={containerRef}
+      style={{
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        width: '100%',
+        height: '100%',
+        pointerEvents: 'none',
+        zIndex: 10,
+        overflow: 'hidden'
+      }}
+    />
   );
 };
 

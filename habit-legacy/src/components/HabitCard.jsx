@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import Confetti from './Confetti';
-// import { FaFire } from 'react-icons/fa';
+import { useUser } from '../context/UserContext';
 
 const HabitCard = ({ 
   title, 
   description, 
   reward, 
+  xpAmount = 0,  // Add xpAmount prop
   streak = 0,
   onSave = () => {},
   onStreakIncrement = () => {}
 }) => {
+  const { increaseExp } = useUser();  // Get increaseExp from context
   const [isEditing, setIsEditing] = useState(false);
   const [isFireAnimating, setIsFireAnimating] = useState(false);
   const [currentStreak, setCurrentStreak] = useState(streak);
@@ -73,6 +75,19 @@ const HabitCard = ({
     // Increment streak
     const newStreak = currentStreak + 1;
     setCurrentStreak(newStreak);
+    
+    // Calculate XP with streak multiplier
+    const streakMultiplier = Math.floor(newStreak / 5) + 1;
+    const totalXp = xpAmount * streakMultiplier;
+    
+    // Increase experience
+    const didLevelUp = increaseExp(totalXp);
+    
+    // If user leveled up, maybe show a special effect or message
+    if (didLevelUp) {
+      console.log("Level up!");
+      // Add level-up specific effects here
+    }
     
     // Notify parent about streak increment
     onStreakIncrement(newStreak);

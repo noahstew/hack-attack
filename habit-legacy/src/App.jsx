@@ -5,44 +5,42 @@ import HabitCard from './components/HabitCard';
 import NavBar from './components/NavBar';
 import { initialUsers, UserDB } from './data/systemData';
 import Player from './components/character/player';
+import { UserProvider } from './context/UserContext';
 
 function App() {
   return (
-    <Layout
-      navbar={
-        <div>
-          <NavBar />
-        </div>
-      }
-      sidebar={
-        <div>
-          <Leaderboard users={initialUsers} />
-        </div>
-      }
-      main={
-        <div>
-          <HabitCard
-            title="Daily Task: Get Hydrated"
-            description="Drink at least 8 glasses of water each day for optimal health."
-            reward="50xp"
-            streak={7}
-          />
-          <HabitCard
-            title="Daily Task: BookWorm"
-            description="Read at least 10 pages of a book"
-            reward="50xp"
-            streak={3}
-          />
-          <HabitCard
-            title="Weekly Task: Clean House"
-            description="Clean: Room, Bathroom, Laundry, Kitchen, Floor, etc."
-            reward="150xp"
-            streak={12}
-          />
-          <Player />
-        </div>
-      }
-    />
+    <UserProvider>
+      <Layout
+        navbar={<NavBar />}
+        sidebar={<Leaderboard users={initialUsers} />}
+        main={
+          <div>
+            <HabitCard 
+              title="Daily Task: Get Hydrated"
+              description="Drink at least 8 glasses of water each day for optimal health."
+              reward="50xp"
+              xpAmount={50}
+              streak={7}
+            />
+            <HabitCard 
+              title="Daily Task: BookWorm"
+              description="Read at least 10 pages of a book"
+              reward="50xp"
+              xpAmount={50}
+              streak={3}
+            />
+            <HabitCard
+              title="Weekly Task: Clean House"
+              description="Clean: Room, Bathroom, Laundry, Kitchen, Floor, etc."
+              reward="150xp"
+              xpAmount={150}
+              streak={12} 
+            />
+            <Player />
+          </div>
+        }
+      />
+    </UserProvider>
   );
 }
 

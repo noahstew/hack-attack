@@ -5,6 +5,7 @@ import HabitCard from './components/HabitCard';
 import NavBar from './components/NavBar';
 import { users } from './data/systemData';
 import Player from './components/character/player';
+import AddHabit from './components/addButton/addHabit';
 
 function App() {
   return (
@@ -36,9 +37,10 @@ function App() {
           streak={12} 
         />
         <Player/>
+        <AddHabit/>
         </div>
       }
-      
+
     />
   );
 }

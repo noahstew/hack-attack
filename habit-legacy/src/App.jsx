@@ -3,7 +3,7 @@ import './global.css';
 import { Layout, Leaderboard } from './components';
 import HabitCard from './components/HabitCard';
 import NavBar from './components/NavBar';
-import { UserDB } from './data/systemData';
+import { initialUsers, UserDB } from './data/systemData';
 import Player from './components/character/player';
 
 function App() {
@@ -16,11 +16,7 @@ function App() {
       }
       sidebar={
         <div>
-          <Leaderboard
-            users={() => {
-              UserDB.getAll();
-            }}
-          />
+          <Leaderboard users={initialUsers} />
         </div>
       }
       main={

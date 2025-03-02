@@ -12,7 +12,7 @@ const quotes = [
   'Every day may not be good, but there is something good in every day.',
 ];
 
-const initialUsers = {
+export const initialUsers = {
   user1: {
     name: 'Min',
     profilePic: 'icon/chicken.png',
@@ -94,7 +94,7 @@ const initializeData = () => {
     // Load users
     const storedUsers = localStorage.getItem(USERS_KEY);
     const users = storedUsers ? JSON.parse(storedUsers) : initialUsers;
-    
+
     return { users };
   } catch (error) {
     console.error('Error initializing data:', error);
@@ -118,7 +118,7 @@ const persistData = () => {
 const UserDB = {
   // Get all users
   getAll: () => asyncOperation({ ...users }),
-  
+
   // Get user by ID
   getById: (userId) => {
     if (!users[userId]) {
@@ -126,7 +126,7 @@ const UserDB = {
     }
     return asyncOperation({ ...users[userId] });
   },
-  
+
   // Create new user
   create: (userData) => {
     const userId = `user${Date.now()}`;
@@ -134,69 +134,69 @@ const UserDB = {
     persistData();
     return asyncOperation({ id: userId, ...userData });
   },
-  
+
   // Update user
   update: (userId, userData) => {
     if (!users[userId]) {
       return asyncOperation({ error: 'User not found' });
     }
-    
+
     users[userId] = { ...users[userId], ...userData };
     persistData();
     return asyncOperation({ ...users[userId] });
   },
-  
+
   // Delete user
   delete: (userId) => {
     if (!users[userId]) {
       return asyncOperation({ error: 'User not found' });
     }
-    
+
     const deletedUser = { ...users[userId] };
     delete users[userId];
     persistData();
     return asyncOperation({ success: true, deletedUser });
   },
-  
+
   // Update user streak
   updateStreak: (userId, increment = 1) => {
     if (!users[userId]) {
       return asyncOperation({ error: 'User not found' });
     }
-    
+
     users[userId].streak += increment;
     persistData();
     return asyncOperation({ streak: users[userId].streak });
   },
-  
+
   // Add XP to user
   addXP: (userId, xp) => {
     if (!users[userId]) {
       return asyncOperation({ error: 'User not found' });
     }
-    
+
     users[userId].currentXp += xp;
-    
+
     // Level up logic (simple example)
     const newLevel = Math.floor(users[userId].currentXp / 500) + 1;
     if (newLevel > users[userId].level) {
       users[userId].level = newLevel;
     }
-    
+
     persistData();
-    return asyncOperation({ 
+    return asyncOperation({
       currentXp: users[userId].currentXp,
       level: users[userId].level,
-      levelUp: newLevel > users[userId].level
+      levelUp: newLevel > users[userId].level,
     });
   },
-  
+
   // Reset database to initial state
   reset: () => {
     users = { ...initialUsers };
     persistData();
     return asyncOperation({ success: true });
-  }
+  },
 };
 
 // Export databases and quotes directly

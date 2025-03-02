@@ -58,3 +58,5 @@ const users = {
     streak: 50,
   },
 };
+
+export { quotes, users };

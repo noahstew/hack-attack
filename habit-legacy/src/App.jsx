@@ -6,6 +6,7 @@ import NavBar from './components/NavBar';
 import { initialUsers, UserDB } from './data/systemData';
 import Player from './components/character/player';
 import { UserProvider } from './context/UserContext';
+import AddHabit from './components/addButton/addHabit';
 
 function App() {
   return (

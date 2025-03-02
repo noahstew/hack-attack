@@ -1,5 +1,5 @@
 // Initial data
-const initialQuotes = [
+const quotes = [
   "Believe you can and you're halfway there.",
   'Success is not final, failure is not fatal: it is the courage to continue that counts.',
   'Do what you can, with what you have, where you are.',
@@ -80,7 +80,6 @@ const DELAY = 300;
 
 // LocalStorage keys
 const USERS_KEY = 'habit_tracker_users';
-const QUOTES_KEY = 'habit_tracker_quotes';
 
 // Helper to simulate async operations
 const asyncOperation = (data) => {
@@ -96,25 +95,20 @@ const initializeData = () => {
     const storedUsers = localStorage.getItem(USERS_KEY);
     const users = storedUsers ? JSON.parse(storedUsers) : initialUsers;
     
-    // Load quotes
-    const storedQuotes = localStorage.getItem(QUOTES_KEY);
-    const quotes = storedQuotes ? JSON.parse(storedQuotes) : initialQuotes;
-    
-    return { users, quotes };
+    return { users };
   } catch (error) {
     console.error('Error initializing data:', error);
-    return { users: initialUsers, quotes: initialQuotes };
+    return { users: initialUsers };
   }
 };
 
 // Database state
-let { users, quotes } = initializeData();
+let { users } = initializeData();
 
 // Save data to localStorage
 const persistData = () => {
   try {
     localStorage.setItem(USERS_KEY, JSON.stringify(users));
-    localStorage.setItem(QUOTES_KEY, JSON.stringify(quotes));
   } catch (error) {
     console.error('Error persisting data:', error);
   }
@@ -205,31 +199,5 @@ const UserDB = {
   }
 };
 
-// Quotes operations
-const QuoteDB = {
-  // Get all quotes
-  getAll: () => asyncOperation([...quotes]),
-  
-  // Get random quote
-  getRandom: () => {
-    const randomIndex = Math.floor(Math.random() * quotes.length);
-    return asyncOperation(quotes[randomIndex]);
-  },
-  
-  // Add quote
-  add: (quote) => {
-    quotes.push(quote);
-    persistData();
-    return asyncOperation({ success: true, quote });
-  },
-  
-  // Reset quotes to initial state
-  reset: () => {
-    quotes = [...initialQuotes];
-    persistData();
-    return asyncOperation({ success: true });
-  }
-};
-
-// Export databases
-export { UserDB, QuoteDB };
+// Export databases and quotes directly
+export { UserDB, quotes };

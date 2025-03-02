@@ -4,6 +4,7 @@ import { Layout, Leaderboard } from './components';
 import HabitCard from './components/HabitCard';
 import NavBar from './components/NavBar';
 import { users } from './data/systemData';
+import Player from './components/character/player';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
           reward="150xp"
           streak={12} 
         />
+        <Player/>
         </div>
       }
     />

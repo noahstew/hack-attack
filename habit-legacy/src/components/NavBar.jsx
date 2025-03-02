@@ -1,8 +1,8 @@
-import ProfilePhoto from './ProfilePhoto';
-import ProgressBar from './ProgressBar';
+import ProfilePhoto from "./ProfilePhoto";
+import ProgressBar from "./ProgressBar";
 function NavBar() {
   return (
-    <div className="flex flex-row justify-between items-center">
+    <div className="flex flex-row justify-between items-center p-4">
       <div className="flex flex-row items-center">
         <img src="logo/LogoIcon.png" alt="logo" width={50}></img>{' '}
         <h1>Habit Legacy</h1>

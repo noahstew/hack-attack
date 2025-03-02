@@ -1,11 +1,11 @@
 import './App.css';
 import './global.css';
 import { Layout } from './components';
-
+import NavBar from './components/NavBar';
 function App() {
   return (
     <Layout
-      navbar={<div>Navigation Bar</div>}
+      navbar={<div><NavBar/></div>}
       sidebar={
         <div>
           <h3>Sidebar (1/4 width)</h3>

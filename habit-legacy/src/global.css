@@ -133,6 +133,7 @@ a:hover:after {
     box-shadow var(--transition-speed);
   position: relative;
   overflow: hidden;
+  opacity: 90%;
 }
 
 .game-card:hover {

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import ProgressBar from './ProgressBar'
+import React, { useState, useEffect } from 'react';
+import Confetti from './Confetti';
 // import { FaFire } from 'react-icons/fa';
 
 const HabitCard = ({ 
@@ -7,23 +7,54 @@ const HabitCard = ({
   description, 
   reward, 
   streak = 0,
-  onSave = () => {} 
+  onSave = () => {},
+  onStreakIncrement = () => {}
 }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [isFireAnimating, setIsFireAnimating] = useState(false);
+  const [currentStreak, setCurrentStreak] = useState(streak);
+  const [showConfetti, setShowConfetti] = useState(false);
+  
+  // State for displaying content
+  const [currentTitle, setCurrentTitle] = useState(title);
+  const [currentDescription, setCurrentDescription] = useState(description);
+  
+  // State for editing
   const [editData, setEditData] = useState({
     title,
-    description,
-    reward
+    description
   });
+  
+  // Update local state when props change
+  useEffect(() => {
+    setCurrentTitle(title);
+    setCurrentDescription(description);
+    setEditData({ title, description });
+  }, [title, description]);
 
-  const streakMultiplier = Math.floor(streak / 5) + 1; // Every 5 days increases multiplier
+  const streakMultiplier = Math.floor(currentStreak / 5) + 1;
 
   const handleEdit = () => {
     setIsEditing(true);
+    // Reset edit data to current values
+    setEditData({
+      title: currentTitle,
+      description: currentDescription
+    });
   };
 
   const handleSave = () => {
-    onSave(editData);
+    // Update the displayed content
+    setCurrentTitle(editData.title);
+    setCurrentDescription(editData.description);
+    
+    // Notify parent component about the change
+    onSave({
+      title: editData.title,
+      description: editData.description,
+      reward // keep the reward unchanged
+    });
+    
     setIsEditing(false);
   };
 
@@ -35,8 +66,32 @@ const HabitCard = ({
     });
   };
 
+  const handleFireClick = () => {
+    // Animate the fire
+    setIsFireAnimating(true);
+    
+    // Increment streak
+    const newStreak = currentStreak + 1;
+    setCurrentStreak(newStreak);
+    
+    // Notify parent about streak increment
+    onStreakIncrement(newStreak);
+    
+    // Show confetti
+    setShowConfetti(true);
+    
+    // Reset animations after delay
+    setTimeout(() => {
+      setIsFireAnimating(false);
+      setShowConfetti(false);
+    }, 2000);
+  };
+
   return (
-    <div className="game-card flex flex-between" style={{ position: 'relative' }}>
+    <div className="game-card flex flex-between" style={{ position: 'relative', overflow: 'hidden' }}>
+      {/* Confetti component */}
+      <Confetti active={showConfetti} duration={2000} />
+      
       {!isEditing && (
         <button 
           className="button" 
@@ -67,9 +122,30 @@ const HabitCard = ({
               flexShrink: 0,  // Prevents shrinking
               alignSelf: 'center' // Ensures vertical centering
           }}>
-            <div className="badge animate-pulse flex-center">
-              <span role="img" aria-label="fire">🔥</span>
-              <span>{streak}</span>
+            <div 
+              className={`badge animate-pulse flex-center ${isFireAnimating ? 'animate-fire' : ''}`} 
+              onClick={handleFireClick}
+              style={{
+                cursor: 'pointer',
+                transition: 'transform 0.2s ease, box-shadow 0.2s ease',
+                transform: isFireAnimating ? 'scale(1.15)' : '',
+                ':hover': {
+                  transform: 'scale(1.1)',
+                  boxShadow: '0 0 15px rgba(255, 184, 108, 0.7)'
+                }
+              }}
+            >
+              <span 
+                role="img" 
+                aria-label="fire" 
+                style={{
+                  fontSize: isFireAnimating ? '1.8em' : '1.2em',
+                  transition: 'font-size 0.2s ease'
+                }}
+              >
+                🔥
+              </span>
+              <span>{currentStreak}</span>
             </div>
             
             {streakMultiplier > 1 && (
@@ -111,14 +187,12 @@ const HabitCard = ({
                   className="button w-full mb-2"
                   placeholder="Description"
                 ></textarea>
-                <input
-                  type="text"
-                  name="reward"
-                  value={editData.reward}
-                  onChange={handleChange}
-                  className="button w-full mb-2"
-                  placeholder="Reward (e.g. 50xp)"
-                />
+                
+                {/* Show reward as read-only text */}
+                <div className="mb-2 text-accent">
+                  <strong>Reward:</strong> {reward}
+                </div>
+                
                 <button className="button button-success" onClick={handleSave}>
                   Save
                 </button>
@@ -126,11 +200,8 @@ const HabitCard = ({
             ) : (
               // Display Mode
               <>
-                <h3>{title}</h3>
-                <p className="text-muted">{description}</p>
-                <div className="w-[48rem]">
-                <ProgressBar current={6} max={8} />
-                </div>
+                <h3>{currentTitle}</h3>
+                <p className="text-muted">{currentDescription}</p>
                 <div className="mt-4">
                   <span className="text-accent">Reward: {reward}</span>
                 </div>

@@ -1,47 +1,25 @@
 import './App.css';
 import './global.css';
-import Grid from './components/layout/Grid';
-// Either import NavBar or remove its usage
-import NavBar from './components/NavBar'; // Add this line if NavBar exists
-import ProgressBar from './components/ProgressBar';
+import { Layout } from './components';
 
 function App() {
   return (
-    <>
-      <div>
-        <ProgressBar current={2100} max={2160} />
-      </div>
-      <Grid columns="1fr 1fr" gap="1rem">
-        <div
-          style={{
-            background: 'var(--color-secondary)',
-            padding: '1rem',
-            borderRadius: 'var(--border-radius)',
-          }}
-        >
-          Grid Item 1
+    <Layout
+      navbar={<div>Navigation Bar</div>}
+      sidebar={
+        <div>
+          <h3>Sidebar (1/4 width)</h3>
+          <p>This area takes up 1/4 of the screen width</p>
         </div>
-        <div
-          style={{
-            background: 'var(--color-secondary)',
-            padding: '1rem',
-            borderRadius: 'var(--border-radius)',
-          }}
-        >
-          Grid Item 2
+      }
+      main={
+        <div>
+          <h3>Main Content (3/4 width)</h3>
+          <p>This area takes up 3/4 of the screen width</p>
         </div>
-        <div
-          style={{
-            background: 'var(--color-secondary)',
-            padding: '1rem',
-            borderRadius: 'var(--border-radius)',
-          }}
-        >
-          Grid Item 3
-        </div>
-      </Grid>
-    </>
+      }
+    />
   );
 }
 
-export default App; // This line is crucial and was missing
+export default App;

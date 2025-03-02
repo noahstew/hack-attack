@@ -108,7 +108,8 @@ function App() {
             ))}
             {showPlayer && <Player aiSuggestion={aiSuggestion} onDismiss={handleDismissPlayer} />}
             <AddHabit onAddHabit={handleAddHabit} />
-
+            <audio src="moosik.mp3" autoPlay loop />
+            
           </div>
         }
       />

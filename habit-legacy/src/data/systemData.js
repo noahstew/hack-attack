@@ -21,7 +21,7 @@ export const initialUsers = {
     streak: 2,
   },
   user2: {
-    name: 'Jane',
+    name: 'Lamia',
     profilePic: 'icon/eagle.jpeg',
     currentXp: 812,
     level: 4,
@@ -29,7 +29,7 @@ export const initialUsers = {
   },
 
   user3: {
-    name: 'Jay T',
+    name: 'LCL',
     profilePic: 'icon/Behemoth.jpg',
     currentXp: 1527,
     level: 6,
@@ -67,7 +67,7 @@ export const initialUsers = {
     streak: 50,
   },
   user8: {
-    name: 'Lamia',
+    name: 'Jay T',
     profilePic: 'icon/wolf.jpeg',
     currentXp: 10234,
     level: 17,

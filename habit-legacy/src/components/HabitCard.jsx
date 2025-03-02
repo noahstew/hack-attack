@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ProgressBar from './ProgressBar'
 // import { FaFire } from 'react-icons/fa';
 
 const HabitCard = ({ 
@@ -72,6 +73,7 @@ const HabitCard = ({
           <>
             <h3>{title}</h3>
             <p className="text-muted">{description}</p>
+            <ProgressBar current={6} max={8} />
             <div className="mt-4">
               <span className="text-accent">Reward: {reward}</span>
             </div>

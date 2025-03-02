@@ -1,6 +1,7 @@
 import './App.css';
 import './global.css';
 import { Layout } from './components';
+import HabitCard from './components/HabitCard';
 import NavBar from './components/NavBar';
 import Leaderboard from './components/Leaderboard';
 function App() {
@@ -14,8 +15,12 @@ function App() {
       }
       main={
         <div>
-          <h3>Main Content (3/4 width)</h3>
-          <p>This area takes up 3/4 of the screen width</p>
+          <HabitCard 
+          title="Daily Task: Get Hydrated"
+          description="Drink at least 8 glasses of water each day for optimal health."
+          reward="50xp"
+          streak={7}
+        />
         </div>
       }
     />

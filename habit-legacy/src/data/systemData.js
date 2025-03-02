@@ -1,0 +1,10 @@
+const quotes = ["Believe you can and you're halfway there.",
+"Success is not final, failure is not fatal: it is the courage to continue that counts.",
+"Do what you can, with what you have, where you are.",
+"Your only limit is your mind.",
+"The way to get started is to quit talking and begin doing.",
+"Difficulties in life are intended to make us better, not bitter.",
+"Dream big, work hard, stay focused, and surround yourself with good people.",
+"Act as if what you do makes a difference. It does.",
+"You don’t have to be great to start, but you have to start to be great.",
+"Every day may not be good, but there is something good in every day.",]

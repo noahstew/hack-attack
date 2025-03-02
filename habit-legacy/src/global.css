@@ -133,6 +133,7 @@ a:hover:after {
     box-shadow var(--transition-speed);
   position: relative;
   overflow: hidden;
+  opacity: 90%;
 }
 
 .game-card:hover {
@@ -193,6 +194,15 @@ a:hover:after {
   left: 100%;
 }
 
+/* Add the button-sm class */
+.button-sm {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.7rem;
+  min-height: 0;
+  min-width: 0;
+  line-height: 1;
+}
+
 .button-primary {
   background: var(--color-accent);
 }
@@ -218,6 +228,14 @@ a:hover:after {
   height: 60px;
   box-shadow: 0 0 10px rgba(200, 172, 214, 0.5);
   position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.badge:hover {
+  transform: scale(1.12);
+  box-shadow: 0 0 20px rgba(255, 184, 108, 0.8);
+  background-color: #1d1b46;
 }
 
 .badge::after {
@@ -277,6 +295,17 @@ a:hover:after {
   justify-content: center;
   font-weight: bold;
   box-shadow: 0 0 15px rgba(200, 172, 214, 0.5);
+}
+
+.animate-fire {
+  animation: fire-pulse 1s ease;
+}
+
+@keyframes fire-pulse {
+  0% { transform: scale(1); }
+  30% { transform: scale(1.15); }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); }
 }
 
 /* === UTILITY CLASSES === */

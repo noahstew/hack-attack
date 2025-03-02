@@ -1,9 +1,10 @@
+import { useUser } from '../context/UserContext';
 import ProfilePhoto from './ProfilePhoto';
 import ProgressBar from './ProgressBar';
+
 function NavBar() {
-  const current = 9900;
-  const max = 10000;
-  const level = 40;
+  const { userExp, userLvl, userExpGoal, increaseExp } = useUser();
+
   return (
     <div className="flex flex-row justify-between items-center p-4">
       <div className="flex flex-row items-center gap-2">
@@ -12,13 +13,13 @@ function NavBar() {
       </div>
       <div className="flex flex-col items-center">
         <div className="flex flex-row items-center gap-2 font-bold text-lg">
-          <p>LVL:</p> <p className="">{level}</p>
+          <p>LVL:</p> <p className="">{userLvl}</p>
         </div>
         <div className="w-[32rem]">
-          <ProgressBar current={current} max={max} />
+          <ProgressBar current={userExp} max={userExpGoal} />
         </div>
         <div className="text-gray-200 -mb-2 text-sm self-end">
-          {current}/{max}
+          {userExp}/{userExpGoal}
         </div>
       </div>
 

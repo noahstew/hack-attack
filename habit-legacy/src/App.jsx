@@ -3,13 +3,16 @@ import './global.css';
 import { Layout } from './components';
 import HabitCard from './components/HabitCard';
 import NavBar from './components/NavBar';
+import Leaderboard from './components/Leaderboard';
 function App() {
   return (
     <Layout
       navbar={<div><NavBar/></div>}
-      sidebar={<div>
-        yo
-      </div>}
+      sidebar={
+        <div>
+        <Leaderboard/>
+        </div>
+      }
       main={
         <div>
           <HabitCard 

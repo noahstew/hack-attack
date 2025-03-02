@@ -2,7 +2,9 @@ let userExp = 0; // The user's current experience
 let userLvl = 1; // The user's current level    
 let userExpGoal = 200; // The user's experience goal
 
-const increaseExp = (exp) => {
+function increaseExp(exp,setUserExp,setUserLvl,setUserExpGoal) {
+    // Increase the user's experience by the given amount
+    // exp: the amount of experience to gain
     let newExp = userExp + exp; // Add the gained exp to the current exp
     let newLvl = userLvl;      // Start from the current level
     let newGoal = userExpGoal; // Start from the current goal

@@ -23,7 +23,7 @@ function NavBar() {
       </div>
 
       <div className="flex flex-row items-center gap-2">
-        <ProfilePhoto imgSrc="icon/eagle.jpeg" alt="profilepic" width={40} />{' '}
+        <ProfilePhoto imgSrc="icon/Behemoth.jpg" alt="profilepic" width={40} />{' '}
         <p>Ben Dover</p>
       </div>
     </div>

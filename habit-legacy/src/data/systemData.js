@@ -23,32 +23,50 @@ const initialUsers = {
   user2: {
     name: 'Jane',
     profilePic: 'icon/eagle.jpeg',
+    currentXp: 990,
+    level: 32,
+    streak: 12,
+  },
+
+  user3: {
+    name: 'Ben D',
+    profilePic: 'icon/Behemoth.jpg',
     currentXp: 1100,
     level: 40,
     streak: 12,
   },
-  user3: {
+
+  user4: {
+    name: 'Mac B',
+    profilePic: 'icon/Toire.jpeg',
+    currentXp: 1600,
+    level: 55,
+    streak: 30,
+  },
+
+  user5: {
     name: 'Jack',
     profilePic: 'icon/robot.jpeg',
     currentXp: 2000,
     level: 60,
     streak: 30,
   },
-  user4: {
+
+  user6: {
     name: 'Jill',
     profilePic: 'icon/shark.jpeg',
     currentXp: 5000,
     level: 100,
     streak: 50,
   },
-  user5: {
+  user7: {
     name: 'Beck',
     profilePic: 'icon/sword&shield.jpeg',
     currentXp: 5000,
     level: 100,
     streak: 50,
   },
-  user6: {
+  user8: {
     name: 'Buck',
     profilePic: 'icon/wolf.jpeg',
     currentXp: 5000,

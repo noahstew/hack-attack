@@ -13,7 +13,7 @@ const quotes = [
 
 const users = {
   user1: {
-    name: 'John',
+    name: 'Min',
     profilePic: 'icon/chicken.png',
     currentXp: 500,
     level: 2,

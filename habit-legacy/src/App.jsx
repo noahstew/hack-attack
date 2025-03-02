@@ -4,10 +4,8 @@ import { Layout } from './components';
 
 function App() {
   return (
-    <Layout 
-      navbar={
-        <div>Navigation Bar</div>
-      }
+    <Layout
+      navbar={<div>Navigation Bar</div>}
       sidebar={
         <div>
           <h3>Sidebar (1/4 width)</h3>

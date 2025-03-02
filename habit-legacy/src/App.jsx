@@ -18,6 +18,18 @@ function App() {
           reward="50xp"
           streak={7}
         />
+          <HabitCard 
+          title="Daily Task: BookWorm"
+          description="Read at least 10 pages of a book"
+          reward="50xp"
+          streak={3}
+        />
+        <HabitCard
+          title="Weekly Task: Clean House"
+          description="Clean: Room, Bathroom, Laundry, Kitchen, Floor, etc."
+          reward="150xp"
+          streak={12} 
+        />
         </div>
       }
     />

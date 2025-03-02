@@ -1,21 +1,23 @@
 import './App.css';
 import './global.css';
 import { Layout } from './components';
+import HabitCard from './components/HabitCard';
 import NavBar from './components/NavBar';
 function App() {
   return (
     <Layout
       navbar={<div><NavBar/></div>}
-      sidebar={
-        <div>
-          <h3>Sidebar (1/4 width)</h3>
-          <p>This area takes up 1/4 of the screen width</p>
-        </div>
-      }
+      sidebar={<div>
+        yo
+      </div>}
       main={
         <div>
-          <h3>Main Content (3/4 width)</h3>
-          <p>This area takes up 3/4 of the screen width</p>
+          <HabitCard 
+          title="Daily Task: Get Hydrated"
+          description="Drink at least 8 glasses of water each day for optimal health."
+          reward="50xp"
+          streak={7}
+        />
         </div>
       }
     />

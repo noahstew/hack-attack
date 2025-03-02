@@ -2,14 +2,14 @@ import './App.css';
 import './global.css';
 import { Layout } from './components';
 import NavBar from './components/NavBar';
+import Leaderboard from './components/Leaderboard';
 function App() {
   return (
     <Layout
       navbar={<div><NavBar/></div>}
       sidebar={
         <div>
-          <h3>Sidebar (1/4 width)</h3>
-          <p>This area takes up 1/4 of the screen width</p>
+        <Leaderboard/>
         </div>
       }
       main={
